@@ -24,7 +24,7 @@ where:
     \[
     F_{\text{gravity}} = m\, g\, \sin\theta,
     \]
-    representing the component of gravity along the road when the vehicle is on an slope with angle \(\theta\). this term become positive when we go downhill, the slope's angle $\theta$ is defined as negative downhill and positive uphill.
+    representing the component of gravity along the road when the vehicle is on an slope with angle \(\theta\). this term become positive when we go downhill, the slope's angle $\theta$ is defined as negative downhill and positive uphill. for a round trip, the gravity term should cancel out. But not the losses from storing and restoring the energy through the power train.
     \item \textbf{Force from motor Acceleration/Braking} 
     \[
     F_{\text{motor}}
@@ -37,27 +37,40 @@ Energy can be defined as a force endured over a distance. Similarly, power can b
 Vehicle Energy efficiency, measured as energy [kilo Watt Hour] per 100 [kilometer] as a function of speed (the others parameters usually remain nearly constant while travelling)
 
 \begin{equation}
-\eta(v) = \frac{1}{36}\cdot\left( \frac{1}{2}\,\rho\,C_d\,A\,v^2 + C_{rr}\,m\,g + m\,g\,\sin\theta \right) \quad \text{[kWh/100km]}.
+\eta(v) = \frac{1}{36}\cdot\left( \frac{1}{2}\,\rho\,C_d\,A\,v^2 + C_{rr}\,m\,g\right) \quad \text{[kWh/100km]}.
 \label{eq:energy_consumption}
 \end{equation}
 
 
-This gives an idea of what we can tune to minimize the amount of energy per unit of distance. Naturally, this model simplifies the reality by ignoring the energy wasted due to the acceleration/braking/idling cycle due to, e.g., a red light or the increased drag from wind. It also ignores the embodied energy in the vehicle.
+This gives an idea of what we can tune to minimize the amount of energy per unit of distance. Naturally, this model simplifies the reality by ignoring the energy wasted due to the acceleration/braking/idling cycle due to, e.g., a red light or the increased drag from wind. It also ignores the embodied energy in the vehicle and the power train efficiency.
 
-\subsection{acceleration braking regime (city) and cruise regime losses}
+\subsection{Driving regime and trips statistics}
 
-To model more accurately the efficiency of a vehicle, we must factor the different driving condition and their relative weight over an average trip. A vehicle can be modelled with four distinct driving mode : Cruising, accelerating, braking and idling. There is fair amount of research studying theses driving modes and their relative proportion [TODO ADD citation china study, ]. It's hard to obtain a definite number for the proportion of each driving cycle as they depend on many parameters like the 
+To model more accurately the efficiency of a vehicle, we must factor the different driving condition and their relative weight over an average trip. A vehicle can be modelled with four distinct driving mode : Cruising, accelerating, braking and idling. There is a fair amount of research studying theses driving modes and their relative proportion. Even tho the exact proportion of each phase will be subject to variation, we can nonetheless see that no phase can be neglected, and thus we need to have a vehicle that is efficient in each case.
 
-\begin{figure}[h]
+\begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\linewidth]{Figures/ch2_shareOfDrivingModeChina.jpg}
-    \caption{Figure from [CITE china study here] showing the relative proportion of driving mode}
+    \caption{Figure from Ma, Real-World driving cycle\cite{ma_real-world_2019} showing the relative proportion of driving mode}
     \label{fig:ch2proportiondrivingmode}
 \end{figure}
 
-also get some number on the acceleration braking amount and quantity (how much and how many)
+We can also notice that the majority of trips are fairly short, with 80\% being less than 10 [km] for an average duration of 22 [minutes] which must be taken into account if there is a warm-up time required as it's the case for internal combustion engine. The trips being fairly short, it's reasonable to assume that the driver could sustain an effort during this time frame if the power at play is comparable to what a human being can output.
 
-we can conclude by noting that no driving mode is negligible in proportion.
+\begin{figure}[h!]
+    \centering
+    \subfloat{
+        \includegraphics[width=0.47\linewidth]{Figures/ch2_TripsLenghtFrequency.png}
+        \label{fig:trips-length}
+    }
+    \hfill
+    \subfloat{
+        \includegraphics[width=0.47\linewidth]{Figures/ch2_TripsDurationFrequency.png}
+        \label{fig:trips-duration}
+    }
+    \caption{Comparison of trip length and trip duration frequency distributions. (from Donati 2015\cite{donati_individual_2015})}
+    \label{fig:trips-comparison}
+\end{figure}
 
 we can define an idling efficiency (even tho the vehicle is not moving and thus only wasting energy, some will waste more energy per unit of time than others)
 
@@ -65,18 +78,35 @@ we can define a deceleration efficiency, measuring how much energy we can recove
 
 we can define an acceleration efficiency by looking at how much energy is wasted from the tank/battery to the wheel/kinetic energy.
 
-It's also interesting to look at the speed profile on road to define how fast a car need to go and the tradeoff between trip time and speed.
+\subsection{Parameters affecting Efficiency}
 
-
-\subsection{Importance of Mass and Aerodynamics in Energy Efficiency}
-
-From the previous equations \eqref{eq:energy_consumption}, we see that to improve the efficiency we must minimize the mass and frontal area of the vehicle followed by a reduction of $C_d$ and $C_{rr}$.
+From the previous equations \eqref{eq:energy_consumption}, we see that to improve the efficiency we must minimize the mass $m$ and frontal area $A$ of the vehicle followed by a reduction of $C_d$ and $C_{rr}$. Furthermore, the power train efficiency is quite important as braking and acceleration cycle are frequent and thus energy is lost every time energy is converted back and forth. Finally, we must also maximize the idling efficiency, as the vehicle will spend a significant amount of time stopped.
 
 \subsection{Importance of embodied Energy and material impact}
-how much energy to build the vehicle, how much ressources
+
+while this work will not go too deep into the manufacturing impact of the vehicle, it's important to note that a significant amount of resources is used and that electric vehicle tend to be more energy and resources intensive than ICE vehicle during its manufacturing, but ICE vehicle compensate by a higher energy and emissions during its life. To reduce the impact of the manufacturing, the vehicle should last as long as possible and minimize the mass of energy intensive material.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{lccc}
+        \toprule
+        \textbf{Vehicle} & \textbf{Lifecycle} & \textbf{Emissions} \\
+        \textbf{Type} & \textbf{Emissions} & \textbf{in Prod.} \\
+        & \textbf{(tonnes CO2e)} & \textbf{(tonnes CO2e)} \\
+        \midrule
+        Standard gasoline vehicle & 24  & 5.6 \\
+        Hybrid vehicle            & 21  & 6.5 \\
+        Plug-in hybrid vehicle    & 19  & 6.7 \\
+        Battery electric vehicle (~500 [g/kWh] CO2e)  & 19  & 8.8 \\
+        Battery electric vehicle (~100 [g/kWh] CO2e)  & 10.8 & 8.8 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Vehicle Whole Life Carbon Emissions Analysis, Based upon a 2015 vehicle in use for 150'000 [Km] using 10\% ethanol blend. Data from \cite{noauthor_zemo2025lifecycle_nodate}, the energy intensity correspond to the world and Europe average respectively, some country doing way better and other worse \cite{noauthor_power_nodate}}
+    \label{tab:carbon_emissions}
+\end{table}
 
 \subsection{Comparison with existing vehicle}
 
 look at velomobile, twizi, smart, tesla, suv, small car, bike
-get number on kwh/100km, embodied energy, typical speed, mass, frontal area, Cd, C_rr
+get number on kwh/100km, embodied energy, typical speed, mass, frontal area, $C_d$, $C_{rr}$
 
