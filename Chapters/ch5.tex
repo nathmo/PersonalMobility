@@ -1,26 +1,149 @@
-\section{Dynamic Analysis}
+\section{Evaluation of Existing Concepts}
 
--> test with simple bycycle, show behavior, try to see the counter steer thing ?\\ (counter steering to innitiate leaning moment, less control action)
+\subsection{Limitations of Cycle-Based Vehicles in Urban Use}
+The table above compares key performance and user experience parameters of E-bikes and velomobiles, grouped into three categories: efficiency, urban usability, and human factors. While both vehicle types demonstrate strong performance in terms of drivetrain efficiency, low aerodynamic drag, and compact form factors suitable for urban environments, they score notably lower on human-centered criteria. These include aspects such as protection, comfort, perceived visibility, and ease of access factors that play a significant role in perceived usability and day-to-day convenience.
 
--> how does it behave on straight road ( with bump and or not flat) ?\\
+Although this analysis does not establish causation, the correlation between low user adoption rates and poor performance on human-centered parameters is striking. It is the author's view that even without a guaranteed improvement in acceptance, addressing these user experience limitations is a worthwhile design direction that could help bridge the gap between technical efficiency and real-world desirability.
 
--> how does it behave during cornering (road with bump and not flat)
+\begin{table}[h!]
+\centering
+\caption{Limitations of Cycle-Based Vehicles in Urban Use}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Parameter} & \textbf{E-Bike} & \textbf{Velomobile} \\
+\midrule
+\multicolumn{3}{l}{\textbf{Section 1: Efficiency}} \\
+Drive train efficiency    & \cellcolor{LightGreen}$\geq70\%$ & \cellcolor{LightGreen}$\geq70\%$ \\
+$C_d$ (drag coefficient)     & \cellcolor{LightRed}1.1        & \cellcolor{LightGreen}0.15 \\
+Frontal area                 & \cellcolor{LightGreen}0.5 m²   & \cellcolor{LightGreen}~0.35 m² \\
+Mass $m$         & \cellcolor{LightGreen} $\approx$85 kg & \cellcolor{LightGreen} $\approx$110 kg \\
+$C_{rr}$ (rolling resistance)& \cellcolor{LightGreen}0.004    & \cellcolor{LightGreen}0.004  \\
+\midrule
+\multicolumn{3}{l}{\textbf{Section 2: Urban Elements}} \\
+Width            & \cellcolor{LightGreen} $\approx$ 50 cm & \cellcolor{LightGreen}$\approx$ 70 cm \\
+Parking space requirement    & \cellcolor{LightGreen}$\approx$ 1 m²& \cellcolor{LightGreen}$\approx$ 1.5 m²\\
+Speed                        & \cellcolor{LightOrange}45 kmh     & \cellcolor{LightOrange}45 kmh \\
+Power-to-weight (continuous) & \cellcolor{LightOrange}13 W/kg        & \cellcolor{LightOrange}10 W/kg\\
+Power-to-weight (peak)       & \cellcolor{LightOrange}16 W/kg  & \cellcolor{LightOrange}13 W/kg\\
+\midrule
+\multicolumn{3}{l}{\textbf{Section 3: Human Elements}} \\
+Feeling visible / high road  & \cellcolor{LightGreen}Good     & \cellcolor{LightRed}bad \\
+Feeling protected            & \cellcolor{LightRed}Poor       & \cellcolor{LightOrange}Fair \\
+Physical effort              & \cellcolor{LightOrange}Medium  & \cellcolor{LightOrange}Medium \\
+Cargo \& passenger capacity  & \cellcolor{LightRed}Low        & \cellcolor{LightOrange}Fair \\
+Weather / thermal protection & \cellcolor{LightRed}Minimal    & \cellcolor{LightGreen}Good \\
+Privacy / comfort            & \cellcolor{LightRed}Poor       & \cellcolor{LightOrange}Fair \\
+Ease of entry / exit         & \cellcolor{LightOrange}Fair     & \cellcolor{LightRed}Difficult \\
+\bottomrule
+\end{tabular}
+\end{table}
 
--> relationship spring to negate effect of weight and weight change ?\\
+\newpage 
 
-\subsection{Prevention of Tipping During Turns}
+\subsection{Limitations of Car for Urban Use}
 
-\subsection{Stability on the Road: Key Parameters and Insights}
+The table bellow highlights the performance of internal combustion engine (ICE) and electric cars across efficiency, urban suitability, and human-centered aspects. While both types of cars excel in comfort, safety, and user convenience, they face significant limitations in terms of efficiency and urban compatibility. ICE cars, in particular, suffer from very low drivetrain efficiency, while both vehicle types share drawbacks like high mass, large frontal area, and substantial parking space requirements. These factors not only reduce energy efficiency but also exacerbate urban challenges such as traffic congestion, noise pollution, and the growing space scarcity in dense cities.
 
-\subsection{Comparison of Steering and Leaning Systems}
+Addressing these inefficiencies is critical both for the urgent need to reduce $CO_2$ emissions, and the increasing strain on urban infrastructure. Optimizing for smaller, lighter, and more space-efficient vehicles could significantly alleviate traffic jams and parking shortages, while also supporting broader sustainability goals. Therefore, it should be a key focus of future mobility solutions, but as cycle based vehicle addoption show, this should not be done at the expense of user comfort and practicality.
 
-\subsection{Energy efficiency}
-TODO IF TIME : 
-we can if we have time use the markov process and integrate of the efficiency over many trips to have an average trip efficiency and have some weight.
+\begin{table}[h!]
+\centering\caption{Limitations of Cycle-Based Vehicles in Urban Use}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Parameter} & \textbf{ICE Car} & \textbf{Electric Car} \\
+\midrule
+\multicolumn{3}{l}{\textbf{Section 1: Efficiency}} \\
+Drive train efficiency    & \cellcolor{LightRed}$\leq30\%$ & \cellcolor{LightGreen}$\geq80\%$ \\
+$C_d$ (drag coefficient)     & \cellcolor{LightRed} 0.3         & \cellcolor{LightOrange}0.2 \\
+Frontal area                 & \cellcolor{LightRed}~2.3 m²   & \cellcolor{LightRed}~2.3 m² \\
+Mass $m$         & \cellcolor{LightRed} $\approx$1100 kg & \cellcolor{LightRed} $\approx$1300 kg \\
+$C_{rr}$ (rolling resistance)& \cellcolor{LightOrange}0.01    & \cellcolor{LightOrange}0.01  \\
+\midrule
+\multicolumn{3}{l}{\textbf{Section 2: Urban Elements}} \\
+Width            & \cellcolor{LightRed} $\approx$ 180 cm & \cellcolor{LightRed}$\approx$ 180 cm \\
+Parking space requirement    & \cellcolor{LightRed}$\approx$ 12 m²& \cellcolor{LightRed}$\approx$ 12 m²\\
+Speed                        & \cellcolor{LightGreen}120 kmh     & \cellcolor{LightGreen}120 kmh \\
+Power-to-weight (continuous) & \cellcolor{LightGreen}50 W/kg        & \cellcolor{LightGreen}60 W/kg\\
+Power-to-weight (peak)       & \cellcolor{LightGreen}50 W/kg  & \cellcolor{LightGreen}120 W/kg\\
+\midrule
+\multicolumn{3}{l}{\textbf{Section 3: Human Elements}} \\
+Feeling visible / high road  & \cellcolor{LightGreen}Good     & \cellcolor{LightGreen}Good \\
+Feeling protected            & \cellcolor{LightGreen}Good       & \cellcolor{LightGreen}Good \\
+Physical effort              & \cellcolor{LightGreen}None  & \cellcolor{LightGreen}None \\
+Cargo \& passenger capacity  & \cellcolor{LightGreen}Good        & \cellcolor{LightGreen}Good \\
+Weather / thermal protection & \cellcolor{LightGreen}Good    & \cellcolor{LightGreen}Good \\
+Privacy / comfort            & \cellcolor{LightGreen}Good       & \cellcolor{LightGreen}Good \\
+Ease of entry / exit         & \cellcolor{LightGreen}Good     & \cellcolor{LightGreen}Good \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-also get some number on the acceleration braking amount and quantity (how much and how many) (use markov model (1 seconde per state and compare with gofar data for braking)
+\newpage
 
-\subsection{Travel time}
-It's also interesting to look at the speed profile on road to define how fast the vehicle need to go (as required by real world data) and the tradeoff between trip time and speed if we have to cap the max speed (at let's say 60 kmh). (effect should be manageable since little time is spent at autobahn speed.
+\subsection{Narrow Track Vehicles: Literature Overview and Modeling Considerations}
 
-get a number on the impact of the vehicle performance on trip duration.
+As detailed in the following chapter, our proposed solution to the shortcomings of conventional urban mobility takes the form of a \textbf{Narrow Track Vehicle (NTV)}. These vehicles, which actively lean into turns, aim to combine the compact footprint and energy efficiency of two-wheelers with the stability and enclosure benefits of multi-wheeled platforms.
+
+\subsection*{Historical Background and Evolution of NTV Research}
+
+Tilting vehicles have been studied since at least the 1950s. However, significant progress in their design and implementation only emerged in the 1990s, driven by advances in control theory and numerical simulation. Increasing urban density and demand for compact mobility solutions redirected attention toward narrow-track configurations.
+
+Today, these vehicles are referred to under various terms such as \textit{tilting three-wheelers}, \textit{man-wide vehicles}, or more generally, \textit{Narrow Track Vehicles (NTVs)}. Their key characteristic is the necessity to actively manage lateral stability during dynamic maneuvers. Without tilting, such narrow vehicles are prone to roll instability and fallover during turns. Early NTV attempts frequently failed due to transient instabilities, sudden and dangerous behaviors triggered during abrupt direction changes or when encountering irregular road conditions. Such behaviors cannot be predicted by simplified static or kinematic models.
+
+\subsection*{The Need for Multibody Simulation and Control}
+
+Accurate modeling of NTV dynamics requires multibody simulation. As demonstrated by Docquier \cite{docquier_dynamic_nodate}, high-fidelity dynamic modeling is essential to capture nonlinear and transient phenomena such as tipping under rapid maneuvers, delayed responses, and steering-induced oscillations. Simplified planar models or bicycle-model approximations fall short when analyzing these effects and are insufficient for control design and geometry comparison.
+
+Stability and handling in tilting NTVs are achieved through active control of lean angle and steering angle. Unlike conventional four-wheelers, which are statically and dynamically stable, NTVs behave more like bicycles or motorcycles. Their dynamics involve coupling between steering and roll motion and this tend to require advanced control scheme.
+
+\newpage 
+
+\subsection*{Control Strategies and User Interaction}
+
+Two dominant control strategies can be found in the literature:
+
+\begin{itemize}
+    \item \textbf{Indirect tilt control}, where steering input generates roll motion via inertial and tire forces—this is typical of motorcycles and some passive or semi-active tilting trikes. The user must perform a countersteering maneuver (i.e., momentarily steering in the opposite direction) to initiate the lean and turn.
+    
+    \item \textbf{Direct tilt control}, where the lean angle is explicitly actuated (e.g., via hydraulic actuators or linear motors), and steering is either coupled or controlled in parallel. This allows the vehicle to follow a commanded trajectory without requiring complex rider input and may feel more natural in enclosed or drive-by-wire platforms.
+\end{itemize}
+
+Indirect control strategies rely heavily on the rider's skill and experience, while direct control strategies increase system complexity and demand robust sensor fusion, trajectory planning, and closed-loop control. Both approaches are still actively studied.
+
+\subsection*{Reliability and Safety Considerations}
+
+As NTVs rely on active control to ensure lateral stability, their reliability under fault conditions is a major concern. In the event of actuator failure, power loss, or sensor dropout, the vehicle could lose its ability to stabilize itself and become hazardous. 
+
+Some concepts address this by incorporating passive fallback modes, such as mechanically locking the tilt mechanism, reverting to a stable tripod configuration, or gradually reducing speed to regain static stability. Others explore redundant actuation or degraded-mode control schemes. However, few studies systematically address fault detection, diagnosis, and safe-state transitions. More research is needed to ensure that tilting NTVs can handle real-world disturbances and hardware failures without endangering occupants or surrounding traffic.
+
+\subsection*{Model Simplification for Preliminary Control Design}
+
+To avoid having to design a dynamic controller as this is very time consumming and would justify it's own semester or master project, we simplify the problem by demonstrating the existence of a steady-state controller for straight-line motion and constant-radius turns using simple tuned PID. While this does not capture transient or disturbance behavior, it will allow to compute some metrics to start comparing the designs.
+
+\newpage 
+
+\subsection*{Performance Metrics for Dynamic Comparison}
+
+Once a basic control scheme is in place, it becomes possible to assess and compare different vehicle architectures based on dynamic performance. However, due to the simplified nature of our current model and the lack of a full feedback controller, only a subset of these metrics can be meaningfully evaluated at this stage.
+
+The following categories illustrate typical metrics used in the literature to evaluate tilting NTVs:
+
+\begin{itemize}
+
+    \item \textbf{existence of steady state stability:} For  agiven vehicle speed and heading, we show that by tunning a PID the vehicle can be stabilised. It's not a strong proof by any stretch of imagination but it help getting a feeling of what design can work and which cannot.
+
+    
+    \item \textbf{Roll Angle vs. Turn Radius:} For a given vehicle speed, the required steady-state roll angle to maintain a stable corner is a function of geometry and mass distribution. This can be derived analytically and used to evaluate how much lean is needed in typical maneuvers This will not be done here as is depend of the final design and have no value at this stage.
+    
+    \item \textbf{Steady-State Control Effort:} The required steering or tilt input torque under steady cornering provides insight into actuator sizing and energy efficiency. These values are geometry-dependent and can be computed under the assumption of ideal controllers.
+    
+    \item \textbf{Cornering Stability Margin:} This refers to the difference between the equilibrium lean angle and the critical tipping angle. It provides a static safety margin but does not account for transient or delayed responses.
+    
+    \item \textbf{Transient Recovery Time and Overshoot:} These metrics, which assess how quickly and smoothly a system responds to changes in command or disturbances, require a full dynamic controller to simulate and are therefore not addressed in this initial study. However, they are essential for understanding rider comfort and system robustness in a final implementation.
+    
+    \item \textbf{Disturbance Rejection and Fault Resilience:} Evaluating how the system responds to crosswinds, road bumps, or sensor noise also necessitates a closed-loop controller with disturbance modeling. These factors play a critical role in real-world safety but cannot be fully quantified at this stage.
+    
+    \item \textbf{Natural Frequency and Damping of Lean Oscillations:} These can provide insight into the passive dynamics of the vehicle frame and its propensity for wobble or instability. This will not be measured due to time constraint.
+\end{itemize}
+
+In summary, while many of the most informative performance metrics require a full closed-loop control system to simulate realistically, geometry-dependent indicators like roll angle requirements and equilibrium tipping margins can still offer valuable early insight. These form the basis for comparative studies between NTV designs prior to full control implementation. Once a dynamic controller is available, more complete evaluation including maneuverability, ride comfort, and fault handling will be possible.

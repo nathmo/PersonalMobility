@@ -1,10 +1,15 @@
-\section{Background and Context}
-
-\subsection{First Principles Analysis of Energy Loss in an average car}
+\section{Foundations of Efficiency}
+Understanding the fundamental energy demands of a vehicle requires a return to first principles. This section lays the groundwork for quantifying how physical forces, design parameters, and user behavior interact to determine the real-world efficiency of small personal vehicles. Starting from the classical longitudinal force balance, we derive expressions for cruising power and highlight the dominant energy losses during motion. However, idealized conditions rarely hold in practice. Therefore, we extend the model to consider dynamic driving modes—such as idling, acceleration, and braking—as well as the energy implications of vehicle mass and manufacturing. By identifying and isolating these different contributors, we clarify which design decisions offer the greatest potential for reducing energy use, both in operation and over the vehicle’s full lifecycle.
+\subsection{Longitudinal Dynamics: A First-Principles Approach}
 The force acting longitudinally on a vehicle can be modeled by the following : 
 
-[TODO : figure with axis and gravity]
-[]
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\linewidth]{Figures/ch1_ForceAxis.png}
+    \caption{Longitudinal car dynamics}
+    \label{fig:longcardynamics}
+\end{figure}
+
 \[
 m\cdot a = F_{\text{motor}} - F_{\text{drag}} - F_{\text{roll}} + F_{\text{gravity}}
 \]
@@ -32,40 +37,40 @@ where:
     this term model the force by the motor/brake
 \end{itemize}
 
-Energy can be defined as a force endured over a distance. Similarly, power can be defined as a force endured at a given speed. Energy efficiency in this context can be defined by the amount of energy required to move by a given distance. Funny enough, this can also be brought back to a force. We will not address "the what" being moved for now, even tho it usually makes sense to also take into account "the what" in the form of cargo/ passenger in the efficiency to compare fairly a train and a car.
+Energy can be defined as a force endured over a distance. Similarly, power can be defined as a force endured at a given speed. Energy efficiency in this context can be defined by the amount of energy required to move by a given distance. This can be brought back to a force.\\
 
-Vehicle Energy efficiency (cruising), measured as energy [kilo Watt Hour] per 100 [kilometer] as a function of speed (the others parameters usually remain nearly constant while travelling)
+Vehicle Energy efficiency (cruising), measured as force as a function of speed (the others parameters usually remain nearly constant while travelling)
 
 \begin{equation}
-\eta(v) = \frac{1}{36}\cdot\left( \frac{1}{2}\,\rho\,C_d\,A\,v^2 + C_{rr}\,m\,g\right) \quad \text{[kWh/100km]}.
+\eta(v) = \cdot\left( \frac{1}{2}\,\rho\,C_d\,A\,v^2 + C_{rr}\,m\,g\right) \quad \text{[N]}.
 \label{eq:energy_consumption}
 \end{equation}
 
 
 This gives an idea of what we can tune to minimize the amount of energy per unit of distance. Naturally, this model simplifies the reality by ignoring the energy wasted due to the acceleration/braking/idling cycle due to, e.g., a red light or the increased drag from wind. It also ignores the embodied energy in the vehicle and the power train efficiency.
 
-\subsection{Driving regime and trips statistics}
+\subsection{Driving Patterns: Beyond Idealized Model}
 
-To model more accurately the efficiency of a vehicle, we must factor the different driving condition and their relative weight over an average trip. A vehicle can be modelled with four distinct driving mode : Cruising, accelerating, braking and idling. There is a fair amount of research studying theses driving modes and their relative proportion. Even tho the exact proportion of each phase will be subject to variation, we can nonetheless see that no phase can be neglected, and thus we need to have a vehicle that is efficient in each case.
+To model more accurately the efficiency of a vehicle, we must factor the different driving condition and their relative weight over an average trip. A car can typically be modelled with four distinct driving mode : Cruising, accelerating, braking and idling. There is a fair amount of research studying theses driving modes and their relative proportion. Even tho the exact proportion of each phase is subject to variation, we can nonetheless see that no phase can be neglected, and thus we need to have a vehicle that is efficient in each case.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\linewidth]{Figures/ch2_shareOfDrivingModeChina.jpg}
-    \caption{Figure from Ma, Real-World driving cycle\cite{ma_real-world_2019} showing the relative proportion of driving mode}
+    \caption{Figure from Ma, Real-World driving cycle\cite{ma_real-world_2019} measuring the relative proportion of driving mode}
     \label{fig:ch2proportiondrivingmode}
 \end{figure}
 
-We can also notice that the majority of trips are fairly short, with 80\% being less than 10 [km] for an average duration of 22 [minutes] which must be taken into account if there is a warm-up time required as it's the case for internal combustion engine. The trips being fairly short, it's reasonable to assume that the driver could sustain an effort during this time frame if the power at play is comparable to what a human being can output.
+We can also notice that the majority of trips are fairly short in Europe, with 80\% being less than 10 [km] and 22 [minutes], warm-up time must be taken into account if required as it's the case for internal combustion engine. The trips being fairly short, it's reasonable to assume that the driver could sustain an effort during this time frame if the power at play is comparable to what a human being can output.
 
 \begin{figure}[h!]
     \centering
     \subfloat{
-        \includegraphics[width=0.47\linewidth]{Figures/ch2_TripsLenghtFrequency.png}
+        \includegraphics[width=0.45\linewidth]{Figures/ch2_TripsLenghtFrequency.png}
         \label{fig:trips-length}
     }
     \hfill
     \subfloat{
-        \includegraphics[width=0.47\linewidth]{Figures/ch2_TripsDurationFrequency.png}
+        \includegraphics[width=0.45\linewidth]{Figures/ch2_TripsDurationFrequency.png}
         \label{fig:trips-duration}
     }
     \caption{Comparison of trip length and trip duration frequency distributions. Relative frequency (bar) and cumulative (red, solid) (from Donati 2015\cite{donati_individual_2015})}
@@ -78,11 +83,7 @@ we can define a deceleration efficiency, measuring how much energy we can recove
 
 we can define an acceleration efficiency by looking at how much energy is wasted from the tank/battery to the wheel/kinetic energy, with value as low as 13\% between and the tank and the wheel for an ICE car and up to 80\% for an electric car \cite{lohse-busch_ambient_2013}. This figure is useful to describe both scenario where the vehicle is climbing a hill and scenario where the vehicle is accelerating.
 
-\subsection{Parameters affecting Efficiency}
-
-From the previous equations \eqref{eq:energy_consumption}, we see that to improve the efficiency we must minimize the mass $m$ and frontal area $A$ of the vehicle followed by a reduction of $C_d$ and $C_{rr}$. Furthermore, the power train efficiency is quite important as braking and acceleration cycle are frequent and thus energy is lost every time energy is converted back and forth. Finally, we must also maximize the idling efficiency, as the vehicle will spend a non-negligible amount of time stopped.
-
-\subsection{Importance of embodied Energy and material impact}
+\subsection{Embodied Energy and Material Impact: Why Mass Matters }
 
 while this work will not go too deep into the manufacturing impact of the vehicle, it's important to note that a significant amount of resources is used and that electric vehicle tend to be more energy and resources intensive than ICE vehicle during its manufacturing, but ICE vehicle compensate by a higher energy and emissions during its life. As the power grid get less carbon intensive, manufacturing become the limiting factor. To reduce the impact of the manufacturing, the vehicle should last as long as possible and minimize the mass of energy intensive material.
 
@@ -101,46 +102,44 @@ while this work will not go too deep into the manufacturing impact of the vehicl
         Battery electric vehicle (~100 [g/kWh] CO2e)  & 10.8 & 8.8 \\
         \bottomrule
     \end{tabular}
-    \caption{Vehicle Whole Life Carbon Emissions Analysis, based upon a 2015 vehicle in use for 150'000 [Km] using 10\% ethanol blend. Data from \cite{noauthor_zemo2025lifecycle_nodate}, the energy intensity correspond to the world and Europe average respectively, some country doing way better and other worse \cite{noauthor_power_nodate}}
+    \caption{Vehicle Whole Life Carbon Emissions Analysis, based upon a 2015 vehicle in use for 150'000 [Km] using 10\% ethanol blend. Data from \cite{noauthor_zemo2025lifecycle_nodate}, the energy intensity of the power grid correspond to the world (500g/kWh) and Europe (100g/kWh) average respectively, some country doing way better and other worse.\cite{noauthor_power_nodate}}
     \label{tab:carbon_emissions}
 \end{table}
 
 \newpage
 
-\subsection{Comparison with existing vehicle}
+\subsection{Parameters affecting Efficiency}
 
-While standardized cycle like the New European Driving Cycle exist to compare car on a common base, these test are not suited to reflect the real driving conditions that make up the majority of trips.\cite{suppportinganalysisonco2emmission} Thus, to avoid this pitfall, the efficiency in each driving regime will be compared instead.
+From the previous equations \eqref{eq:energy_consumption}, we see that to improve the efficiency we must minimize the mass $m$ and frontal area $A$ of the vehicle followed by a reduction of $C_d$ and $C_{rr}$. Furthermore, the power train efficiency is quite important as braking and acceleration cycle are frequent and thus energy is lost every time energy is converted back and forth. Finally, we must also maximize the idling efficiency, as the vehicle will spend a non-negligible amount of time stopped.
 
-\begin{table*}[h!]
+
+\subsection{Aerodynamic Optimization Through Form Factor}
+
+Designing a narrow and short vehicle naturally limits the frontal area $A$. To further improve $C_d A$, the rider or passenger can be reclined and positioned in tandem configuration. The challenge here is comfort and user experience.
+
+External sensors and digital displays could theoretically solve the visibility issue if one want to further reduce the frontal area, but the resulting cognitive dissonance (visual/vestibular mismatch) can lead to motion sickness. A pragmatic compromise includes a partially reclined posture with sufficient external visibility.
+
+\begin{figure}[h!]
     \centering
-    \sisetup{round-mode=places,round-precision=2}
-    \renewcommand{\arraystretch}{1.2}
-    \setlength{\tabcolsep}{3pt}
+    \subfloat{
+        \includegraphics[width=0.47\linewidth]{Figures/ch3_seatingOptimisation.png}
+    }
+    \hfill
+    \subfloat{
+        \includegraphics[width=0.47\linewidth]{Figures/ch3_seatingOptimisationFront.png}
+    }
+    \caption{Effect on the frontal area by reclining the seat by 30° and placing passengers in tandem}
+    \label{fig:FrontaAreaGraphicsComparison}
+\end{figure}
 
-    \begin{tabular}{l S[table-format=4.0] S[table-format=4.0] S[table-format=4.1] S[table-format=1.2] S[table-format=1.2] S[table-format=1.3] S[table-format=1.2] S[table-format=1.2] S[table-format=1.2] S[table-format=1.2]}
-        \toprule
-        & \rottext{Production (tonnes CO2e)} 
-        & \rottext{Max Speed (km/h)} 
-        & \rottext{Mass (kg) $\times C_{rr}$} 
-        & \rottext{Frontal Area $(m^2) \times C_d$} 
-        & \rottext{Battery/Tank to Wheel Eff.} 
-        & \rottext{Regenerative braking Eff.} 
-        & \rottext{Idling Eff.} \\
-        \midrule
-        SUV (RAV4)        & & & & & & & \\
-        compact (Corolla) & & & & & & & \\
-        Smart ForTwo      & & & & & & & \\
-        Tesla Model 3     & & & & & & & \\
-        Renault Twizy     & & & & & & & \\
-        Walking           & 0 & & & & & & \\
-        Bicycle           & & & & & & & \\
-        Velomobile        & & & & & & & \\
-        \bottomrule
-    \end{tabular}
+\newpage 
 
-    \caption{Energy and efficiency comparison of different transport modes. for methodology, see appendix \ref{subsec:appendix_enegy_efficiency_comparison}}
-    \label{tab:comparison}
-\end{table*}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\linewidth]{Figures/ch4_frontComparisonVehicle.png}
+    \caption{Comparison of the frontal area of a car, a leaning vehicle, the proposed solution and a person}
+    \label{fig:frontal_comparison}
+\end{figure}
 
+But, such configurations, while aerodynamic, make it hard to enter/exit for the passenger. Our design proposes the use of an active system that can adjust the height of each wheel to both solve the leaning during turn problem and allow reclining the seat for easier ingress and egress, solving both problems.
 
-We can further compare these value by introducing a Markov Transition matrix measured from real world trips to compare both the energy expenditure over a realistic trip in a given scenario and the extra time taken for the vehicle that can't reach the maximum legal speed at the expense of requiring real world trips data and the Markov Transition matrix which is less straightforward than just comparing efficiency over a standardized cycle.
