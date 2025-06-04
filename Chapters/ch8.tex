@@ -59,23 +59,85 @@ Data was logged for plotting and post-processing. Camera control was implemented
 
 \subsection{Results}
 
+To assess the dynamic behavior of each configuration, we evaluated their ability to maintain stability under straight-line and constant-radius turning using PID control. Below is a summary of the observed behavior for each of the four combinations of chassis layout (3-wheel vs. 4-wheel) and lean mechanism (pivot vs. linear actuator):
 
-Qualitatively, I observed for the Pivot design family that the mechanical trail of the wheel (the wheel is further behind the pivot) inscrease stability
+\begin{wrapfigure}{r}{0.45\linewidth}
+    \centering
+    \vspace{-1em}
+    \includegraphics[width=\linewidth]{Figures/ch7_inwardWheel.png}
+    \caption{Wheel inward locking behavior in pivot-based designs}
+    \label{fig:wheel_instability}
+    \vspace{-1em}
+\end{wrapfigure}
 
-Wheel osccilation appear as speed increase. increasing damping solve the problem but might make the response sluggish once we consider the dynamic behaviour.
+In the pivot-based configurations, especially the 3-wheel version, we observed a strong tendency for wheels to lock inward or outward due to mass loading, as shown in Figure~\ref{fig:wheel_instability}. This arises from the geometry of the pivot as the mass of the cockpit press on the leg, which find a new minimum by having both wheel going inward or outward. If one try to mitigate the issue by increasing the spring constant of the wheel pivot, the vehicle is not able to turn smoothly and slip instead.
 
-Pivot arm seems to be fundamentally a flawed idea. The mass of the system push on the wheel and will make them tend to either go inward or outward...
+This behavior makes the pivot-based system unsuitable for high-speed or open-loop control. 
 
+Furthermore, For both system, the \textit{mechanical trail} behind the pivot axis improves stability, which is consistent with known self-aligning behaviors in caster-like systems.
+
+Both linear actuator variants (3- and 4-wheel) responded well to PID control in maintaining lean stability. Wheel wobble emerged at high speeds, particularly in the 3-wheel variant, but were manageable with increased damping and should likely be solved with a controller that will impact the wheel speed to create a cancelling moment. Both the three wheel and Four wheel linear actuator variant performed equally well. The four wheel variant as the advantage of allowing the loss of one of the actuator and thus offer some redunduncy. 
+
+Figure~\ref{fig:linear_success_turn} and Figure~\ref{fig:fourwheel_success} show that it's possible to stabilize a steady state turn of the linear actuator based lean control during steady-state turning and straight line driving.
+
+The plot showing the position, speed, acceleration of each element did not yield much result except to help tune the PID by looking at the response.
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.5\linewidth]{Figures/ch7_inwardWheel.png}
-    \caption{wheel instability on Pivot based Design}
-    \label{fig:wheel_instability}
+    \begin{subfigure}[b]{0.48\linewidth}
+        \includegraphics[width=\linewidth]{Figures/ch8_ThreeWheelLinearTurning.png}
+        \caption{Three-wheel linear actuator turning}
+        \label{fig:linear_success_turn}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\linewidth}
+        \includegraphics[width=\linewidth]{Figures/ch8_FourWheelSuccessfullTurn.png}
+        \caption{Four-wheel linear actuator turning}
+        \label{fig:fourwheel_success}
+    \end{subfigure}
+    \caption{Successful steady-state turning in linear actuator configurations}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\linewidth]{Figures/ch8_ThreeWheelLinearTurning.png}
-    \caption{Sucessful steady state turn for Linear axis based Design}
-    \label{fig:linear_success_turn}
-\end{figure}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{} & \textbf{Pivot Mechanism} & \textbf{Linear Actuator} \\
+\hline
+\textbf{3-Wheel} & 
+\begin{tabular}[c]{@{}l@{}}
+- Inherent instability in wheel alignment\\
+- Wheels tend to lock inward/outward\\
+- Trail effect offers some self-correction\\
+- Poor turn stability without speed control
+\end{tabular}
+&
+\begin{tabular}[c]{@{}l@{}}
+- Stable under moderate speed\\
+- Lean control effective with PID\\
+- Wheel oscillation at high speed\\
+- Responsive to speed vectoring
+\end{tabular}
+\\
+\hline
+\textbf{4-Wheel} & 
+\begin{tabular}[c]{@{}l@{}}
+- Only 2 passive pivoting wheels allowed\\
+- Otherwise becomes uncontrollable\\
+- Self-alignment is weak\\
+- Strong inward force on wheels
+\end{tabular}
+& 
+\begin{tabular}[c]{@{}l@{}}
+- Most stable configuration\\
+- Smooth turn response with PID\\
+- Capable of steady-state turning\\
+- Requires speed differential control
+\end{tabular}
+\\
+\hline
+\end{tabular}
+\caption{Qualitative behavior observed in the four configurations}
+\label{tab:design-summary}
+\end{table}
+
+These results suggest that a high-CoM tilting vehicle can be stabilized, provided the mechanical layout don't add too many non-linear coupling and independent wheel speed control is available.

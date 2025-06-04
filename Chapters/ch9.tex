@@ -2,17 +2,86 @@
 
 \subsection{Summary of Findings}
 
+This project set out with three main objectives: to analyze the constraints on urban vehicle design from an efficiency, urban, and human standpoint; to propose a better trade-off between efficiency and usability; and to validate the feasibility of such a design using modeling and simulation.
+
+Each of these objectives was addressed. The constraint analysis identified key trade-offs in mass, drag, power, spatial footprint, and user acceptance. Based on these insights, a novel narrow-track vehicle was proposed that aims to combine the strengths of both e-bikes and compact cars.
+
+The proposed design demonstrates high energy efficiency through minimized mass and drag, strong urban integration thanks to its narrow footprint and vertical parking capability, and improved user experience by offering protection, cargo capacity, and a raised cockpit. The final configuration features:
+
+\begin{itemize}
+    \item A lightweight chassis with minimized frontal area and drag coefficient;
+    \item A tandem seating layout with reclining assistance for ingress/egress and vertical parking;
+    \item A leaning mechanism ensuring stability during turns while maintaining a raised riding posture.
+\end{itemize}
+
+Comparative analysis confirmed that the design outperforms conventional vehicles in urban settings on key metrics. Dynamic simulations using PyBullet verified that the proposed geometry can be stabilized under realistic conditions with a basic PID controller—especially in the four-wheel linear actuator configuration.
+
+Overall, this project provides a compelling argument, both theoretical and simulated, for the viability of a new vehicle class optimized for urban mobility.
+
 \subsection{Challenges and Limitations}
+
+Despite promising theoretical and simulation-based results, several limitations constrain the scope of the current work:
+
+\begin{itemize}
+    \item \textbf{Dynamic control:} Only steady-state PID stabilization was implemented. Real-world usage involves transient events, disturbances, and sensor uncertainties, which demand more sophisticated closed-loop control and fault-tolerant designs.
+    \item \textbf{Mechanical feasibility:} While linear-guided leaning mechanisms outperformed pivot-based alternatives in simulation, their real-world mechanical complexity, cost, and maintainability remain untested.
+    \item \textbf{No hardware validation:} All results are based on models and simulations. No physical prototype was built, and thus, no experimental validation of control strategies, ergonomic features, or energy efficiency has yet been conducted.
+    \item \textbf{Crash safety and passive protection:} Although the low speed and mass reduce collision severity, structural safety under lateral or frontal impact remains unquantified.
+    \item \textbf{Interaction with real traffic:} Human behavior and inter-vehicle dynamics in mixed-traffic conditions (e.g., filtering at red lights, occupying bike lanes) are not yet modeled. The impact on traffic flow and perceived safety needs further investigation.
+\end{itemize}
+
+\newpage 
 
 \subsection{Suggestions for Future Research}
 
-compare the proposed geometry to the more "classic" one to see if it's more than good enough to work but at least as good or better than the classic design.
+Several open questions and directions emerge from this work:
 
-a prototype should be built to verify the theoretical model.
+\begin{enumerate}
+    \item \textbf{Prototype Development and Validation:}  
+    A functional prototype should be developed to verify the theoretical and simulation results, particularly on:
+    \begin{itemize}
+        \item Real-world lean stabilization and ride dynamics;
+        \item Human factors, including ingress/egress, comfort, visibility;
+        \item Energy consumption and thermal comfort under typical urban trips.
+    \end{itemize}
+    
+    \item \textbf{Comparative Geometry Study:}  
+    A systematic comparison with “classic” narrow-track geometries (e.g., non-leaning or passive tilting) should be conducted to establish whether the proposed design is not just feasible, but measurably superior in terms of:
+    \begin{itemize}
+        \item Stability margins;
+        \item Actuator energy demands;
+        \item User acceptance and safety perception.
+    \end{itemize}
 
-Safety in case of collisions should be integrated
+    \item \textbf{Crash Safety and Passive Design Elements:}  
+    Safety under collision (especially lateral and rear impact) should be analyzed via finite element analysis or physical crash testing as by its very lightweight nature the vehicle might likely be ejected upon impact from a car.
 
-if such vehicle was deployed, how would traffic look like inside the city ? would it help with congestion ? 
-impact of trip time if we remonter la file au feux ? safety impact ?
+    \item \textbf{Urban Traffic Impact Modeling:}  
+    If widely adopted, how would such vehicles influence urban traffic? Questions include:
+    \begin{itemize}
+        \item Would their ability to skip queue via bike lane reduce average trip times while not impacting the car ?
+        \item Would it induce positive or negative safety outcomes in mixed traffic?
+        \item Could dedicated microvehicle lanes be justified ?
+    \end{itemize}
 
-Multi-Modal Transport Efficiency with Train Onboarding, what would happen if we took the train with our ”bike++” to coverage long distance ?
+    \item \textbf{Integration into Multimodal Transport:}  
+    The potential to “train-board” the vehicle similar to folding bikes warrants study. The rational being that this vehicle would solve the last kilometers problem but is not able to replace the car on long distance trip but train onboarding might solve that.Questions include:
+    \begin{itemize}
+        \item What dimensions and weight constraints would be required?
+        \item Could this reduce the need for park-and-ride infrastructure?
+        \item What energy/time savings would result from combining short and long-range trips?
+    \end{itemize}
+
+    \item \textbf{Legal and Regulatory Pathfinding:}  
+    Further investigation into the legal classification (e.g., whether such a vehicle qualifies as a cycle) and its implications on insurance, road access, and subsidies is essential for deployment.
+
+    \item \textbf{Actuator Failure and Redundancy:}  
+    Given the dependence on active stabilization, future work must address fault tolerance:
+    \begin{itemize}
+        \item Can a passive fallback stabilize the vehicle at low speeds?
+        \item Can wheel differentials be used to passively reorient the lean?
+    \end{itemize}
+\end{enumerate}
+
+In conclusion, while the proposed design offers a compelling vision for sustainable, compact urban mobility, transforming this vision into reality requires further exploration.
+

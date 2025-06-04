@@ -38,6 +38,24 @@
 \end{center}
 %%%
 
+%%% ABSTRACT, PROJECT ASSIGNMENT
+{ % create local environment
+\fancyhead[R]{\textsc{PROJECT ASSIGNMENT, ABSTRACT}}
+
+\newpage
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+Urban environments face increasing challenges related to road traffic congestion, limited parking, and the environmental inefficiencies of personal cars. Meanwhile, current cycle-based alternatives such as e-bikes and velomobiles often fail to meet comfort, safety, or usability expectations, limiting their adoption. This project investigates the feasibility of a new vehicle category which bridges that gap: a compact, lightweight, and energy-efficient vehicle concept offering car-like comfort while retaining the legal and spatial advantages of a bicycle.
+
+Using a first-principles approach, we model the energy demands of short-distance urban trips, accounting for both ideal and real-world driving patterns. We identify key parameters such as mass, frontal area, and drivetrain efficiency that govern energy use. We then introduce a novel vehicle design that incorporates an active leaning mechanism, vertical parking capability, and tandem seating, aiming to balance aerodynamic performance, urban compatibility, and user experience.
+
+The vehicle concept is evaluated against existing solutions in terms of efficiency, spatial footprint, and human factors. A comparative simulation study using PyBullet explores the steady-state dynamic stability of various configurations (3-wheel vs. 4-wheel, pivot vs. linear leaning mechanisms) under PID control of the proposed design. Results demonstrate that the proposed design offers superior trade-offs in the three metric defined, albeit at the cost of increased mechanical complexity and the need for active stabilization requiring a complex controller.
+
+This study provides both a physical and behavioral justification for a pragmatic urban mobility solution. It also outlines the path toward prototyping, with considerations for dynamic control and safety.
+
+\newpage
+}
+%%%
 %%% TABLE OF CONTENTS
 \newpage
 \renewcommand{\contentsname}{Table of Contents} 
@@ -46,24 +64,6 @@
   \tableofcontents
 }
 \newpage
-%%%
-
-%%% ABSTRACT, PROJECT ASSIGNMENT
-{ % create local environment
-\fancyhead[R]{\textsc{PROJECT ASSIGNMENT, ABSTRACT}}
-
-\section*{Abstract}
-\addcontentsline{toc}{section}{Abstract}
-Urban environments face increasing challenges related to traffic congestion, limited parking, and the environmental inefficiencies of personal cars. Meanwhile, current cycle-based alternatives such as e-bikes and velomobiles often fail to meet comfort, safety, or usability expectations, limiting their adoption. This project investigates the feasibility of a new vehicle category that bridges the gap: a compact, lightweight, and energy-efficient platform offering car-like comfort while retaining the legal and spatial advantages of a bicycle.
-
-Using a first-principles approach, we model the energy demands of urban trips, accounting for both ideal and real-world driving patterns. We identify key parameters such as mass, frontal area, and drivetrain efficiency that govern operational and embodied energy use. We then introduce a novel vehicle design that incorporates an active leaning mechanism, vertical parking capability, and tandem seating, aiming to balance aerodynamic performance, urban compatibility, and user experience.
-
-The vehicle concept is evaluated against existing solutions in terms of efficiency, spatial footprint, and human factors. A comparative simulation study using PyBullet explores the steady-state dynamic stability of various configurations (3-wheel vs. 4-wheel, pivot vs. linear leaning mechanisms) under PID control of the proposed design. Results demonstrate that the proposed design offers superior trade-offs, albeit at the cost of increased mechanical complexity and the need for active stabilization.
-
-This study provides both a physical and behavioral justification for a pragmatic urban mobility solution and outlines the path toward prototyping, with considerations for dynamic control, safety, and integration into multimodal transport ecosystems.
-
-\newpage
-}
 %%%
 
 % Creates the introduction, starting page numbering
